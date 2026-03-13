@@ -1,0 +1,34 @@
+
+{% extends 'base.html' %}
+{% block content %}
+<h2>Préstamos</h2>
+<table>
+    <tr>
+        <th>Libro</th>
+        <th>Usuario</th>
+        <th>Fecha</th>
+    </tr>
+    {% for prestamo in prestamos %}
+    <tr>
+        <td>{{ prestamo.libro }}</td>
+        <td>{{ prestamo.usuario }}</td>
+        <td>{{ prestamo.fecha }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h3>Registrar Préstamo</h3>
+<form method="POST" action="/agregar_prestamo">
+    <select name="libro" required>
+        {% for libro in libros %}
+        <option value="{{ libro.titulo }}">{{ libro.titulo }}</option>
+        {% endfor %}
+    </select><br>
+    <select name="usuario" required>
+        {% for usuario in usuarios %}
+        <option value="{{ usuario.nombre }}">{{ usuario.nombre }}</option>
+        {% endfor %}
+    </select><br>
+    <button type="submit">Registrar</button>
+</form>
+{% endblock %}
